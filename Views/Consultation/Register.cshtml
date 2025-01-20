@@ -1,0 +1,40 @@
+﻿@model ConsultationRequest
+@{
+    ViewData["Title"] = "Реєстрація на консультацію";
+}
+
+<h2>Реєстрація на консультацію</h2>
+
+<form asp-action="Register" method="post" class="consultation-form">
+    <div>
+        <label asp-for="FullName"></label>
+        <input asp-for="FullName" class="form-control" />
+        <span asp-validation-for="FullName" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="Email"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="PreferredDate"></label>
+        <input asp-for="PreferredDate" type="date" class="form-control" />
+        <span asp-validation-for="PreferredDate" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="Product"></label>
+        <select asp-for="Product" asp-items="@(new SelectList(ViewBag.Products))" class="form-control"></select>
+        <span asp-validation-for="Product" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Зареєструватися</button>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
